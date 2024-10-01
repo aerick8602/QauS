@@ -1,0 +1,78 @@
+/* Container for the Display Options */
+.Navbar{
+  width: 100%;
+  background-color: white;
+}
+.display-options-container {
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+}
+
+/* Styling for the main button */
+.display-btn {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+}
+
+/* Styling for the filter icon */
+.filter-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Styling for the down arrow */
+.down-arrow {
+  width: 15px;
+  height: 15px;
+  margin-left: 8px;
+}
+
+/* Overlay panel styling */
+.overlay-panel {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: #F6F8FA;
+  /* border: 1px solid #ccc; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 100;
+  width: 200px;
+  border-radius: 3px;
+}
+
+/* Dropdown Container */
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px; /* Space between dropdowns */
+}
+
+/* Dropdown styling */
+.dropdown {
+  justify-content:space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dropdown label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.dropdown select {
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

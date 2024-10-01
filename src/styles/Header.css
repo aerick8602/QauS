@@ -1,0 +1,64 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: white;
+    color: black;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.dropdown-button {
+    display: inline-block;
+    position: relative; /* Ensure this is relative to position dropdown content */
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 7px; /* Rounded borders */
+    padding: 5px 10px;
+    margin-right: 20px; /* Added space between buttons if needed */
+}
+
+.Filter-smb {
+    height: 15px;
+    margin-top: -3px;   
+    padding: 0px 7px 0px 5px;
+}
+
+.down-arrow {
+    height: 15px;
+    margin-top: -3px;
+    padding: 0px 0px 0px 7px;
+}
+
+.dropdown-content {
+    position: absolute; /* Position relative to the dropdown-button */
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it's above other content */
+    top: 110%; /* Position just below the dropdown button */
+    left: 2.5%; /* Align with the left edge of the dropdown button */
+    border-radius: 5px;
+    width: 250px
+}
+.Libox{
+    display: flex;
+}
+.dropdown-group{
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-select{
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    color: black;
+    border-radius: 5px;
+    font-size: 14px;
+}

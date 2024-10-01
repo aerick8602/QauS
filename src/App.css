@@ -1,0 +1,27 @@
+.kanban-board {
+  display: flex;
+  justify-content: space-around;
+  /* background-color: gray; */
+}
+
+.kanban-column {
+  width: 370px;
+  /* border: 1px solid #ccc; */
+  /* padding: 1rem; */
+}
+
+.ticket-card {
+  /* background-color: #f9f9f9; */
+  padding: 1rem;
+  /* margin-bottom: 1rem; */
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.display-options button {
+  /* margin-right: 1rem; */
+}
+
+.display-options .active {
+  font-weight: bold;
+}
