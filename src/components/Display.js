@@ -41,14 +41,15 @@ const DisplayOptions = ({ display, setDisplay, groupBy, setGroupBy, orderBy, set
       setShowOverlay(false);
     }
   };
-
+  useEffect(() => {
+    setDisplay('Ordering');
+  }, [orderBy]);
+  
   useEffect(() => {
     setDisplay('Grouping');
   }, [groupBy]);
 
-  useEffect(() => {
-    setDisplay('Ordering');
-  }, [orderBy]);
+
 
   return (
     <div className='Navbar'>

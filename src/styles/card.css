@@ -1,19 +1,21 @@
 .ticket-card {
   background-color: #f9f9f9;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 15px;
   height: 125px;
   margin: 10px;
   max-width: 360px;
   font-family: 'Arial', sans-serif;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
   position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .ticket-card:hover {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.01); 
 }
+
 
 .ticket-header {
   display: flex;
