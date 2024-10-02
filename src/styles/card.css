@@ -3,9 +3,9 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 15px;
-  /* width: 310px; */
   height: 110px;
   margin: 10px;
+  max-width: 370px;
   font-family: 'Arial', sans-serif;
   transition: box-shadow 0.3s ease;
   position: relative;
@@ -50,7 +50,7 @@
 }
 
 .ticket-title {
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #000000;
   margin-bottom: 5px;
@@ -63,29 +63,24 @@
   font-size: 0.9rem;
   position: absolute;
   bottom: 10px;
-  left: 10px;
+  left: 15px;
 }
 
-.tag-icon-wrapper {
-  width: 25px;
-  height: 25px;
-  margin: 0 8px 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  border: 1px solid #ddd;
+.ticket-tag img {
   border-radius: 4px;
+  border: 1px solid #ddd;
 }
+
+
 
 .tag-icon {
+  padding: 2px;
   width: 18px;
   height: 18px;
   color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 4px;
+  border: 1px solid #f8f8f8;
+  margin-right: 5px;
 }
 
 .tag-label {
@@ -105,4 +100,12 @@
   height: 10px;
   border-radius: 50%;
   background-color: #BEC4C9;
+}
+
+.ordered-tickets{
+  margin-top: 20px;
+}
+
+.card-count{
+margin:0px;
 }

@@ -3,12 +3,12 @@ import Display from "../assets/Display.svg";
 import DownArrow from "../assets/down.svg";
 import "../styles/DisplayOptions.css";
 
-const DisplayOptions = ({display,setDisplay,groupBy, setGroupBy, orderBy, setOrderBy }) => {
+const DisplayOptions = ({ display, setDisplay, groupBy, setGroupBy, orderBy, setOrderBy }) => {
   const [showOverlay, setShowOverlay] = useState(false);
   const overlayRef = useRef(null);
 
   const toggleOverlay = () => {
-    setShowOverlay((prev) => !prev);
+    setShowOverlay(prev => !prev);
   };
 
   const handleClickOutside = (event) => {
@@ -43,14 +43,13 @@ const DisplayOptions = ({display,setDisplay,groupBy, setGroupBy, orderBy, setOrd
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setDisplay('Grouping');
-  },[groupBy]);
+  }, [groupBy]);
 
-  
-  useEffect(()=>{
+  useEffect(() => {
     setDisplay('Ordering');
-  },[orderBy]);
+  }, [orderBy]);
 
   return (
     <div className='Navbar'>

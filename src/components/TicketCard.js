@@ -1,11 +1,9 @@
 import React from 'react';
-// import { FaExclamation } from 'react-icons/fa';
-import NoPrioity from  '../assets/No-priority.svg'
+import Dot from '../assets/3 dot menu.svg';
 import '../styles/card.css';
 
-const TicketCard = ({ ticket, users }) => {
+const TicketCard = ({ ticket, users, groupBy}) => {
   const user = users.find(user => user.id === ticket.userId);
-  console.log(ticket);
 
   const getPriorityLabel = (priority) => {
     switch (priority) {
@@ -29,9 +27,21 @@ const TicketCard = ({ ticket, users }) => {
           )}
         </div>
       </div>
-      <div className='ticket-title'>{ticket.title}</div>
+      {groupBy!=='status'?(
+        <div>
+          <div className='ticket-title'>{ticket.title}</div>
+          </div>
+      ):(
+<div className='ticket-title'>{ticket.title}</div>
+      )}
+      
       <div className='ticket-tag'>
-
+        {groupBy==='priority'?(
+           <div></div>
+         
+        ):(
+          <img className='tag-icon' src={Dot} alt="Tag icon" />
+        )}
         <div className='tag-label'>
           <div className='bullet'></div>
           {ticket.tag[0]}

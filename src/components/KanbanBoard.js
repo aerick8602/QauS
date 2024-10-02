@@ -32,11 +32,11 @@ const KanbanBoard = () => {
   ]);
 
   const PriorityIcons = new Map([
-    [4, UrgentPrioritycolor],
-    [3, HighPriority],
-    [2, MediumPriority],
-    [1, LowPriority],
-    [0, NoPriority], // assuming 0 is for no priority
+    [1, UrgentPrioritycolor],
+    [2, HighPriority],
+    [3, MediumPriority],
+    [4, LowPriority],
+    [0, NoPriority], 
   ]);
 
   useEffect(() => {
@@ -55,10 +55,10 @@ const KanbanBoard = () => {
 
   const getPriorityLabel = (priority) => {
     switch (priority) {
-      case 4: return 'Urgent';
-      case 3: return 'High';
-      case 2: return 'Medium';
-      case 1: return 'Low';
+      case 1: return 'Urgent';
+      case 2: return 'High';
+      case 3: return 'Medium';
+      case 4: return 'Low';
       default: return 'No priority';
     }
   };
@@ -86,7 +86,9 @@ const KanbanBoard = () => {
           <img src={PriorityIcons.get(Number(key))} alt={getPriorityLabel(Number(key))} />
         )}
       </div>
+      
       <h5>{getPriorityLabel(Number(key))}</h5>
+      <p  className='card-count'>{groupedTickets[key].length}</p>
     </>
   ) : groupBy === 'user' ? (
     <>
@@ -113,15 +115,16 @@ const KanbanBoard = () => {
                 </div>
               </div>
               {group.map(ticket => (
-                <TicketCard key={ticket.id} ticket={ticket} users={users} />
+                <TicketCard key={ticket.id} ticket={ticket} users={users} groupBy={groupBy} />
               ))}
             </div>
           ))
         ) : (
           // Display ordered tickets in a single line
           <div className="ordered-tickets">
+
             {orderedTickets.map(ticket => (
-              <TicketCard key={ticket.id} ticket={ticket} users={users} />
+              <TicketCard key={ticket.id} ticket={ticket} users={users} groupBy={groupBy}/>
             ))}
           </div>
         )}

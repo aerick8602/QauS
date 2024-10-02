@@ -7,6 +7,7 @@
   /* background-color: gray; */
   background-color: #F4F6FA;
   width: 100vw;
+  top:60px;
 }
 
 .kanban-column {
@@ -80,3 +81,6 @@
   background-color: #ddd;
   border-radius: 50%;
 }
+
+
+
