@@ -25,7 +25,7 @@ const TicketCard = ({ ticket, users, groupBy}) => {
     ["Done", Done],
     ["Canceled", Cancel],
   ]);
-  console.log(ticket)
+  // console.log(ticket);
 
   return (
     <div className='ticket-card'>

@@ -42,7 +42,9 @@ const KanbanBoard = () => {
   }, []);
 
   const groupedTickets = groupTickets(tickets, users, groupBy);
+  console.log(groupTickets);
   const orderedTickets = orderTickets(tickets, orderBy);
+  console.log(orderTickets);
 
   const getPriorityLabel = (priority) => {
     switch (priority) {

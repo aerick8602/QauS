@@ -19,6 +19,7 @@ const DisplayOptions = ({ display, setDisplay, groupBy, setGroupBy, orderBy, set
   useEffect(() => {
     localStorage.setItem('groupBy', groupBy);
     localStorage.setItem('orderBy', orderBy);
+    console.log(orderBy,groupBy);
   }, [groupBy, orderBy]);
 
   useEffect(() => {
@@ -76,8 +77,8 @@ const DisplayOptions = ({ display, setDisplay, groupBy, setGroupBy, orderBy, set
                   onChange={(e) => setGroupBy(e.target.value)}
                 >
                   <option value="status">Status</option>
-                  <option value="user">User</option>
                   <option value="priority">Priority</option>
+                  <option value="user">User</option>
                 </select>
               </div>
               <div className="dropdown">
