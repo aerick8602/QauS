@@ -1,6 +1,6 @@
 # QuickSell Frontend Assignment
 
-### Live Demo [QuickSell](https://ayush-quicksell-katiyar.netlify.app/)
+### Live Demo [QuickSell](https://qau-s.vercel.app/)
 
 ## Submission Details
 - **Submitted By:** Ayush Katiyar
