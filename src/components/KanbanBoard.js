@@ -2,11 +2,42 @@ import React, { useState, useEffect } from 'react';
 import { fetchTickets } from '../utils/api';
 import TicketCard from './TicketCard';
 import DisplayOptions from './DisplayOptions';
+import Todo from "../assets/To-do.svg";
+import Inprogress from "../assets/in-progress.svg";
+import Done from "../assets/Done.svg";
+import Cancel from "../assets/Cancelled.svg";
+import Backlog from "../assets/Backlog.svg";
+import Add from "../assets/add.svg";
+import Menu from "../assets/3 dot menu.svg";
+import UrgentPrioritycolor from "../assets/SVG - Urgent Priority colour.svg";
+import UrgentPrioritygrey from "../assets/SVG - Urgent Priority grey.svg";
+import NoPriority from "../assets/No-priority.svg";
+import MediumPriority from "../assets/Img - Medium Priority.svg";
+import LowPriority from "../assets/Img - Low Priority.svg";
+import HighPriority from "../assets/Img - High Priority.svg";
 
 const KanbanBoard = () => {
   const [tickets, setTickets] = useState([]);
+  const [display, setDisplay] = useState('Grouping');
   const [groupBy, setGroupBy] = useState(() => localStorage.getItem('groupBy') || 'status');
+  const [orderBy, setOrderBy] = useState(() => localStorage.getItem('orderBy') || 'Priority');
   const [users, setUsers] = useState([]);
+
+  const Status = new Map([
+    ["Todo", Todo],
+    ["In Progress", Inprogress],
+    ["Backlog", Backlog],
+    ["Done", Done],
+    ["Canceled", Cancel],
+  ]);
+
+  const PriorityIcons = new Map([
+    [4, UrgentPrioritycolor],
+    [3, HighPriority],
+    [2, MediumPriority],
+    [1, LowPriority],
+    [0, NoPriority], // assuming 0 is for no priority
+  ]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,33 +48,104 @@ const KanbanBoard = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('groupBy', groupBy);
-  }, [groupBy]);
 
-  const groupedTickets = groupTickets(tickets, groupBy);
+
+  const groupedTickets = groupTickets(tickets, users, groupBy);
+  const orderedTickets = orderTickets(tickets, orderBy);
+
+  const getPriorityLabel = (priority) => {
+    switch (priority) {
+      case 4: return 'Urgent';
+      case 3: return 'High';
+      case 2: return 'Medium';
+      case 1: return 'Low';
+      default: return 'No priority';
+    }
+  };
 
   return (
     <div>
-      <DisplayOptions groupBy={groupBy} setGroupBy={setGroupBy} />
+      <DisplayOptions
+        display={display}
+        setDisplay={setDisplay}
+        groupBy={groupBy}
+        setGroupBy={setGroupBy}
+        orderBy={orderBy}
+        setOrderBy={setOrderBy}
+      />
       <div className="kanban-board">
-        {Object.entries(groupedTickets).map(([key, group]) => (
-          <div key={key} className="kanban-column">
-            <h3>{key}</h3>
-            {group.map(ticket => (
+        {display === 'Grouping' ? (
+          Object.entries(groupedTickets).map(([key, group]) => (
+            <div key={key} className="kanban-column">
+              <div className='Header'>
+              <div className='HeaderStatus'>
+  {groupBy === 'priority' ? (
+    <>
+      <div>
+        {PriorityIcons.get(Number(key)) && (
+          <img src={PriorityIcons.get(Number(key))} alt={getPriorityLabel(Number(key))} />
+        )}
+      </div>
+      <h5>{getPriorityLabel(Number(key))}</h5>
+    </>
+  ) : groupBy === 'user' ? (
+    <>
+       <div className="default-icon"></div>
+      <h5>{key}</h5>
+    </>
+  ) : (
+    <>
+      <div>
+        {Status.get(key) ? (
+          <img src={Status.get(key)} alt={key} />
+        ) : (
+          <div className='bullet'></div>
+        )}
+      </div>
+      <h5>{key}</h5>
+    </>
+  )}
+</div>
+
+                <div className='HeaderButton'>
+                  <img src={Add} alt="Add" />
+                  <img src={Menu} alt="Menu" />
+                </div>
+              </div>
+              {group.map(ticket => (
+                <TicketCard key={ticket.id} ticket={ticket} users={users} />
+              ))}
+            </div>
+          ))
+        ) : (
+          // Display ordered tickets in a single line
+          <div className="ordered-tickets">
+            {orderedTickets.map(ticket => (
               <TicketCard key={ticket.id} ticket={ticket} users={users} />
             ))}
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
 };
 
-const groupTickets = (tickets, groupBy) => {
+const groupTickets = (tickets, users, groupBy) => {
+  const grouped = {};
+  
+  // Create a mapping of userId to username
+  const userMap = {};
+  if (Array.isArray(users)) {
+    users.forEach(user => {
+      userMap[user.id] = user.name; // Map userId to username
+    });
+  } else {
+    console.error("Users is not an array:", users);
+    return;
+  }
+
   if (groupBy === 'status') {
-    const statuses = ['Todo', 'In Progress', 'Backlog', 'Done', 'Canceled']; // Define statuses in desired order
-    const grouped = {};
+    const statuses = ['Backlog', 'In Progress', 'Todo', 'Done', 'Canceled'];
 
     // Initialize empty arrays for each status
     statuses.forEach(status => {
@@ -57,16 +159,16 @@ const groupTickets = (tickets, groupBy) => {
         grouped[ticketStatus].push(ticket);
       }
     });
-
     return grouped;
   } else if (groupBy === 'user') {
-    // Group by userId
+    // Group by username
     return tickets.reduce((groups, ticket) => {
-      const key = ticket.userId;
-      if (!groups[key]) {
-        groups[key] = [];
+      const username = userMap[ticket.userId] || ticket.userId; // Get username or use userId if not found
+      
+      if (!groups[username]) {
+        groups[username] = [];
       }
-      groups[key].push(ticket);
+      groups[username].push(ticket);
       return groups;
     }, {});
   } else if (groupBy === 'priority') {
@@ -80,6 +182,19 @@ const groupTickets = (tickets, groupBy) => {
       return groups;
     }, {});
   }
+  return grouped; // Return the grouped tickets
+};
+
+const orderTickets = (tickets, orderBy) => {
+  // Order tickets based on the selected criteria
+  return [...tickets].sort((a, b) => {
+    if (orderBy === 'Priority') {
+      return b.priority - a.priority; // Assuming priority is numeric
+    } else if (orderBy === 'Title') {
+      return a.title.localeCompare(b.title);
+    }
+    return 0; // Default case
+  });
 };
 
 export default KanbanBoard;
