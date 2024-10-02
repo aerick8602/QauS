@@ -13,15 +13,38 @@
   - App.css
   - App.js
   - App.test.js
+  - assets
+    - 3 dot menu.svg
+    - add.svg
+    - Backlog.svg
+    - Cancelled.svg
+    - Display.svg
+    - Done.svg
+    - down.svg
+    - Img - High Priority.svg
+    - Img - Low Priority.svg
+    - Img - Medium Priority.svg
+    - in-progress.svg
+    - No-priority.svg
+    - SVG - Urgent Priority colour.svg
+    - SVG - Urgent Priority grey.svg
+    - To-do.svg
   - components
-    - DisplayOptions.js
+    - Card.js
+    - Display.js
     - KanbanBoard.js
-    - TicketCard.js
   - index.css
   - index.js
   - logo.svg
   - reportWebVitals.js
   - setupTests.js
   - styles
+    - Card.css
+    - Display.css
+    - KanbanBoard.css
+  - tasks
+    - grouping.js
+    - ordering.js
   - utils
     - api.js
+    - svg.js

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Display from "../assets/Display.svg";
-import DownArrow from "../assets/down.svg";
-import "../styles/DisplayOptions.css";
+import "../styles/Display.css"
+import { Display, DownArrow } from '../utils/svg';
 
 const DisplayOptions = ({ display, setDisplay, groupBy, setGroupBy, orderBy, setOrderBy }) => {
   const [showOverlay, setShowOverlay] = useState(false);

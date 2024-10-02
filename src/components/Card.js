@@ -1,11 +1,8 @@
 import React from 'react';
 import Dot from '../assets/3 dot menu.svg';
-import '../styles/card.css';
-import Todo from "../assets/To-do.svg";
-import Inprogress from "../assets/in-progress.svg";
-import Done from "../assets/Done.svg";
-import Cancel from "../assets/Cancelled.svg";
-import Backlog from "../assets/Backlog.svg";
+import '../styles/Card.css';
+import { Backlog, Cancel, Done, Inprogress, Todo } from '../utils/svg';
+
 
 const TicketCard = ({ ticket, users, groupBy}) => {
   const user = users.find(user => user.id === ticket.userId);
