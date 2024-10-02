@@ -25,7 +25,7 @@ const KanbanBoard = () => {
 
   const Status = new Map([
     ["Todo", Todo],
-    ["In Progress", Inprogress],
+    ["In progress", Inprogress],
     ["Backlog", Backlog],
     ["Done", Done],
     ["Canceled", Cancel],
@@ -148,7 +148,7 @@ const groupTickets = (tickets, users, groupBy) => {
   }
 
   if (groupBy === 'status') {
-    const statuses = ['Backlog', 'In Progress', 'Todo', 'Done', 'Canceled'];
+    const statuses = ['Backlog', 'In progress', 'Todo', 'Done', 'Canceled'];
 
     // Initialize empty arrays for each status
     statuses.forEach(status => {

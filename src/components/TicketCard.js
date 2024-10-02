@@ -1,6 +1,11 @@
 import React from 'react';
 import Dot from '../assets/3 dot menu.svg';
 import '../styles/card.css';
+import Todo from "../assets/To-do.svg";
+import Inprogress from "../assets/in-progress.svg";
+import Done from "../assets/Done.svg";
+import Cancel from "../assets/Cancelled.svg";
+import Backlog from "../assets/Backlog.svg";
 
 const TicketCard = ({ ticket, users, groupBy}) => {
   const user = users.find(user => user.id === ticket.userId);
@@ -15,6 +20,16 @@ const TicketCard = ({ ticket, users, groupBy}) => {
     }
   };
 
+
+  const StatusSvgs = new Map([
+    ["Todo", Todo],
+    ["In progress", Inprogress],
+    ["Backlog", Backlog],
+    ["Done", Done],
+    ["Canceled", Cancel],
+  ]);
+  console.log(ticket)
+
   return (
     <div className='ticket-card'>
       <div className='ticket-header'>
@@ -27,14 +42,14 @@ const TicketCard = ({ ticket, users, groupBy}) => {
           )}
         </div>
       </div>
-      {groupBy!=='status'?(
-        <div>
-          <div className='ticket-title'>{ticket.title}</div>
-          </div>
-      ):(
-<div className='ticket-title'>{ticket.title}</div>
-      )}
-      
+      <div className='title'>
+       <div>{StatusSvgs.get(ticket.status)?(
+        <img src={StatusSvgs.get(ticket.status)}></img>
+       ):(
+        <div className='Dummy'>@</div>
+       )}</div>
+      <div className='ticket-title'>{ticket.title}</div>
+      </div>
       <div className='ticket-tag'>
         {groupBy==='priority'?(
            <div></div>
