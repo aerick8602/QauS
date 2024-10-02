@@ -1,6 +1,6 @@
 import React from 'react';
 import Dot from '../assets/3 dot menu.svg';
-import '../styles/Card.css';
+import '../styles/card.css';
 import { Backlog, Cancel, Done, Inprogress, Todo } from '../utils/svg';
 
 
